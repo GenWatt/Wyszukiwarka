@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Filter</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <main>
+        <section class="search-filter">
+            <div class="search-conteiner">
+                <div class="search-input">
+                    <label for="search" class="search-label">Search</label>
+                    <div class="icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <input type="text" name="search" id="search" autocomplete="off">
+                </div>
+                <div class="items-list-box">
+                    <div id="path">
+                        <span id="scroll"></span>
+                    </div>
+                    <ul class="list"></ul>
+                </div>
+            </div>
+            <div class="filters-conteiner">
+                <div class="set-up">
+                    <label for="brand">Filter by brand</label>
+                    <input type="radio" class="filter" name="filter" id="brand" value="brand" checked>
+                </div>
+                <div class="set-up">
+                    <label for="phone">Filter by phone</label>
+                    <input type="radio" class="filter" name="filter" id="phone" value="phone">
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; Created by Adrian Raszka</p>
+    </footer>
+    <script src="https://kit.fontawesome.com/61630affa7.js" crossorigin="anonymous"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>

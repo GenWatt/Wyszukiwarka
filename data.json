@@ -1,0 +1,38 @@
+{
+    "data": [{
+            "brand": "Apple",
+            "phone": "iPhone XI Pro",
+            "id": "4"
+        },
+        {
+            "brand": "Samsung",
+            "phone": "Galaxy S20 Ultra",
+            "id": "2"
+        },
+        {
+            "brand": "Huwaei",
+            "phone": "P40 Pro",
+            "id": "3"
+        },
+        {
+            "brand": "SONY",
+            "phone": "Xperia 1",
+            "id": "5"
+        },
+        {
+            "brand": "SONYSuper",
+            "phone": "Xperia 1",
+            "id": "6"
+        },
+        {
+            "brand": "SONYSuper",
+            "phone": "Xperia 1",
+            "id": "7"
+        },
+        {
+            "brand": "SONYSuper",
+            "phone": "Xperia 1",
+            "id": "8"
+        }
+    ]
+}
