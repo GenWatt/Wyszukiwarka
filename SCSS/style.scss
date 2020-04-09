@@ -9,11 +9,11 @@ $red-theme: rgb(252, 104, 104);
 $lightgreen-theme: rgb(147, 182, 19);
 $black-theme: rgb(39, 37, 37);
 $box-shadow-red-theme: 3px 3px 10px rgb(255, 0, 0),
--3px -3px 10px rgba(0, 0, 0, 0.185);
+  -3px -3px 10px rgba(0, 0, 0, 0.185);
 $box-shadow-black-theme: 3px 3px 10px rgb(0, 0, 0),
--3px -3px 10px rgba(0, 0, 0, 0.377);
+  -3px -3px 10px rgba(0, 0, 0, 0.377);
 $box-shadow-lightgreen: 3px 3px 10px rgb(154, 197, 0),
--3px -3px 10px rgba(0, 0, 0, 0.185);
+  -3px -3px 10px rgba(0, 0, 0, 0.185);
 
 @mixin center-flex {
   display: flex;
@@ -1267,6 +1267,13 @@ body {
           box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.096),
             inset -3px -3px 10px rgba(0, 0, 0, 0.096);
         }
+        .price {
+          grid-column: 3/4;
+          font-size: 1.6em;
+          color: rgb(218, 45, 45);
+          text-align: right;
+          align-self: flex-end;
+        }
       }
     }
   }
@@ -1286,7 +1293,7 @@ body {
     }
   }
 
-  @media screen and (max-width: 863px) {
+  @media screen and (max-width: 930px) {
     .search-filter {
       align-items: center;
       justify-content: space-around;
