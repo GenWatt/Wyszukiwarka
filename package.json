@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/GenWatt/Wyszukiwarka/issues"
   },
-  "homepage": "http://GenWatt.github.io/Wyszukiwarka/docs",
+  "homepage": "http://GenWatt.github.io/Wyszukiwarka",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",

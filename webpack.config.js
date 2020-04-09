@@ -4,9 +4,9 @@ const path = require("path");
 module.exports = {
   entry: "./script.js",
   output: {
-    path: path.resolve(__dirname, "docs"),
+    path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: "https://GenWatt.github.io/Wyszukiwarka/docs",
+    publicPath: "https://GenWatt.github.io/Wyszukiwarka/dist",
   },
   module: {
     rules: [
