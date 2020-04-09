@@ -5,7 +5,9 @@
   "main": "script.js",
   "scripts": {
     "dev": "webpack-dev-server --mode=development",
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -16,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/GenWatt/Wyszukiwarka/issues"
   },
-  "homepage": "https://github.com/GenWatt/Wyszukiwarka#readme",
+  "homepage": "http://GenWatt.github.io/Wyszukiwarka",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
