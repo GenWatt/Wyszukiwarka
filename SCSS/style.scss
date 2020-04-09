@@ -2,17 +2,18 @@
   box-sizing: border-box;
   margin: 0;
 }
+
 //variables
 $main-bg-color: rgb(231, 0, 0);
 $red-theme: rgb(252, 104, 104);
 $lightgreen-theme: rgb(147, 182, 19);
 $black-theme: rgb(39, 37, 37);
 $box-shadow-red-theme: 3px 3px 10px rgb(255, 0, 0),
-  -3px -3px 10px rgba(0, 0, 0, 0.185);
+-3px -3px 10px rgba(0, 0, 0, 0.185);
 $box-shadow-black-theme: 3px 3px 10px rgb(0, 0, 0),
-  -3px -3px 10px rgba(0, 0, 0, 0.377);
+-3px -3px 10px rgba(0, 0, 0, 0.377);
 $box-shadow-lightgreen: 3px 3px 10px rgb(154, 197, 0),
-  -3px -3px 10px rgba(0, 0, 0, 0.185);
+-3px -3px 10px rgba(0, 0, 0, 0.185);
 
 @mixin center-flex {
   display: flex;
@@ -35,6 +36,7 @@ body {
   font-family: Georgia, "Times New Roman", Times, serif;
   overflow-x: hidden;
   min-height: 100vh;
+
   /*search filter*/
   .search-filter {
     width: 100%;
@@ -166,6 +168,7 @@ body {
       animation: left-right 2s ease-in-out infinite;
       -webkit-animation: left-right 2s ease-in-out infinite;
     }
+
     /*animation when hover on conteiner*/
     @keyframes left-right {
       0% {
@@ -180,6 +183,7 @@ body {
         left: 5px;
       }
     }
+
     /*search icon from font awesome*/
     .icon {
       @include center-flex();
@@ -202,6 +206,7 @@ body {
       -o-transition: all 0.6s ease-out;
       pointer-events: none;
       color: white;
+
       /*icon when input focusing*/
       &.on-focus {
         background-color: white;
@@ -383,6 +388,7 @@ body {
           border-bottom-left-radius: 10px;
           border-bottom-right-radius: 10px;
         }
+
         /*styling when item is match*/
         &.show {
           transform: scale(1);
@@ -391,6 +397,7 @@ body {
           -ms-transform: scale(1);
           -o-transform: scale(1);
         }
+
         /*styling when item is no matching*/
         &.hide {
           height: 0px;
@@ -406,6 +413,7 @@ body {
           -ms-transition: transform 0.2s linear, height 0.2s ease 0.1s;
           -o-transition: transform 0.2s linear, height 0.2s ease 0.1s;
         }
+
         /*styling when is deleting*/
         &.hide-scale-down {
           transform-origin: right;
@@ -422,12 +430,14 @@ body {
         }
       }
     }
+
     /*brand name style in each item*/
     .brand {
       opacity: 0.4;
       font-size: 0.8em;
       display: block;
     }
+
     /*delete btn style in each item */
     .delete-btn {
       @include pos-top();
@@ -458,6 +468,7 @@ body {
         box-shadow 0.2s ease-out;
       -o-transition: background-color 0.4s ease-out, transform 0.2s ease-out,
         box-shadow 0.2s ease-out;
+
       &:hover,
       &:focus {
         background-color: rgb(216, 216, 216);
@@ -470,6 +481,7 @@ body {
           -5px -5px 10px rgba(238, 238, 238, 0.712);
       }
     }
+
     /*if no result caption style*/
     .no-result {
       color: black;
@@ -481,6 +493,7 @@ body {
       font-weight: 900;
     }
   }
+
   /* conteiner for radio inputs to filter by brand or mobile phone*/
   .filters-conteiner {
     position: relative;
@@ -493,6 +506,7 @@ body {
       margin-bottom: 40px;
       position: relative;
       cursor: pointer;
+
       /*input radio style*/
       input {
         display: block;
@@ -510,6 +524,7 @@ body {
         -moz-appearance: none;
         appearance: none;
         cursor: pointer;
+
         /*input background circle style*/
         &::before {
           content: "";
@@ -524,6 +539,7 @@ body {
           display: block;
           position: absolute;
         }
+
         /*when checked sytle*/
         &::after {
           @include pos-top();
@@ -653,6 +669,7 @@ body {
       }
     }
   }
+
   .drop-down-menu {
     width: 300px;
     color: rgba(0, 0, 0, 0.651);
@@ -799,9 +816,11 @@ body {
       }
     }
   }
+
   .mobile-dropdown-nav {
     display: none;
   }
+
   /*sort order items list  */
   aside {
     position: fixed;
@@ -1012,14 +1031,14 @@ body {
 
         &.red-theme {
           background-color: rgb(199, 66, 66);
-        }
 
-        &.red-theme p {
-          color: azure;
-        }
+          .price {
+            color: rgb(255, 146, 4);
+          }
 
-        .price {
-          color: rgb(255, 146, 4);
+          p {
+            color: azure;
+          }
         }
 
         &.black-theme {
@@ -1248,17 +1267,10 @@ body {
           box-shadow: inset 3px 3px 10px rgba(0, 0, 0, 0.096),
             inset -3px -3px 10px rgba(0, 0, 0, 0.096);
         }
-
-        & .price {
-          grid-column: 3/4;
-          font-size: 1.6em;
-          color: rgb(218, 45, 45);
-          text-align: right;
-          align-self: flex-end;
-        }
       }
     }
   }
+
   footer {
     width: 100%;
     height: 30px;
@@ -1351,6 +1363,7 @@ body {
           -o-transform: scale(1);
         }
       }
+
       &.fixed-nav.show {
         top: 0;
       }
@@ -1391,6 +1404,7 @@ body {
         -o-transform: rotate(180deg);
       }
     }
+
     &.red-theme .mobile-dropdown-nav {
       background-color: $red-theme;
     }

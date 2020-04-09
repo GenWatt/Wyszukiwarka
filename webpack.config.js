@@ -4,12 +4,13 @@ const path = require("path");
 module.exports = {
   entry: "./script.js",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "docs"),
     filename: "bundle.js",
-    publicPath: "https://GenWatt.github.io/Wyszukiwarka/dist",
+    publicPath: "https://GenWatt.github.io/Wyszukiwarka/docs",
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
@@ -32,7 +33,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./index.html",
+      template: "./sb.html",
     }),
   ],
 };
