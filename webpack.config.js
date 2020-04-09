@@ -9,8 +9,7 @@ module.exports = {
     publicPath: "https://GenWatt.github.io/Wyszukiwarka/dist",
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
@@ -33,7 +32,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./se.html",
+      template: "./index.html",
     }),
   ],
 };
