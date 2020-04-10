@@ -1,7 +1,7 @@
 import "./SCSS/style.scss";
 //fetch data from json file
 
-fetch("./data.json")
+fetch("./dist/data.json")
   .then((res) => res.json())
   .then((res) => {
     searchFilterEngine(res.data);

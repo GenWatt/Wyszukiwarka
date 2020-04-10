@@ -1427,12 +1427,14 @@ body {
   }
 
   @media screen and (max-width: 490px) {
-    .search-conteiner:hover {
-      transform: scale(1.05);
-      -webkit-transform: scale(1.05);
-      -moz-transform: scale(1.05);
-      -ms-transform: scale(1.05);
-      -o-transform: scale(1.05);
+    .search-conteiner {
+      &:hover {
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05);
+        -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+        -o-transform: scale(1.05);
+      }
 
       .search-filter {
         min-height: 50vh;
