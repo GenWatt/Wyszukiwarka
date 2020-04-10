@@ -1,0 +1,52 @@
+{
+    "data": [{
+            "brand": "Apple",
+            "phone": "iPhone XI Pro",
+            "description": "Luxury Brand with the lightest mobile system!",
+            "price": "4895zł",
+            "id": "4"
+        },
+        {
+            "brand": "Samsung",
+            "phone": "Galaxy S20 Ultra",
+            "description": "Incredible 100 times zoom!",
+            "price": "6000zł",
+            "id": "2"
+        },
+        {
+            "brand": "Huawei",
+            "phone": "P30 Pro",
+            "description": "The best night photos!",
+            "price": "2800zł",
+            "id": "3"
+        },
+        {
+            "brand": "SONY",
+            "phone": "Xperia 1",
+            "description": "Nice cinematic camera support!",
+            "price": "3949zł",
+            "id": "5"
+        },
+        {
+            "brand": "Xiaomi",
+            "phone": "Mi 10 PRO",
+            "description": "Not too expensive and good quality!",
+            "price": "3153zł",
+            "id": "6"
+        },
+        {
+            "brand": "ASUS",
+            "phone": "Zenfon 5",
+            "description": "Great rotate camera with the best selfie!",
+            "price": "900zł",
+            "id": "7"
+        },
+        {
+            "brand": "Oppo",
+            "phone": "Find X",
+            "description": "Bezless phone with 90%+ body ratio!",
+            "price": "3074zł",
+            "id": "8"
+        }
+    ]
+}
