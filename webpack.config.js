@@ -6,11 +6,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: "https://GenWatt.github.io/Wyszukiwarka/dist",
+    publicPath: "https://GenWatt.github.io/Wyszukiwarka",
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
