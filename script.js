@@ -1,6 +1,6 @@
 import "./SCSS/style.scss";
 //fetch data from json file
-fetch("./data.json")
+fetch("https://genwatt.github.io/Wyszukiwarka/data.json")
   .then((res) => res.json())
   .then((res) => {
     searchFilterEngine(res.data);
