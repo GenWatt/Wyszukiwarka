@@ -1,6 +1,5 @@
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
-const webpack = require("webpack");
 const autoprefixer = require("autoprefixer");
 
 module.exports = {
@@ -11,7 +10,8 @@ module.exports = {
     publicPath: "https://GenWatt.github.io/Wyszukiwarka",
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
@@ -38,6 +38,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./sb.html",
     }),
-    autoprefixer
+    autoprefixer,
   ],
 };
