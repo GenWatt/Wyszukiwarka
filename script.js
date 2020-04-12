@@ -9,7 +9,7 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 exports.__esModule = true;
 require("./SCSS/style.scss");
 //fetch data from json file
-fetch("./dist/data.json")
+fetch("./data.json")
     .then(function (res) { return res.json(); })
     .then(function (res) {
     searchFilterEngine(res.data);
