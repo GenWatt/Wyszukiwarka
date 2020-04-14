@@ -12,9 +12,9 @@ fetch("./data.json")
 //array of phone img path
 const arrImg: string[] = [
   "/Iphone11-Pro.png",
-  "/Samsung-galaxy-s20-ultra.jpg",
-  "/Huawei-p40-pro.jpg",
-  "/Xperia-1.png",
+  "/Samsung-Galaxy-S20-Ultra.jpg",
+  "/huawei-p40-pro.jpg",
+  "/xperia-1.png",
   "/xiaomi-mi-10-pro.png",
   "/asus-zenfone-5-.webp",
   "/oppo-find-x.jpg",
