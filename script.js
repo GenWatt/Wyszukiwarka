@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-fetch("./dist/data.json")
+fetch("./data.json")
     .then(function (res) { return res.json(); })
     .then(function (res) {
     searchFilterEngine(res.data);
@@ -59,7 +59,7 @@ function getImg() {
         return __generator(this, function (_a) {
             arrImg.forEach(function (url, index) {
                 setTimeout(function () {
-                    fetch("./dist/img" + url)
+                    fetch("./img" + url)
                         .then(function (res) { return res.blob(); })
                         .then(function (myBlob) { return URL.createObjectURL(myBlob); })
                         .then(function (URL) {
