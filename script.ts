@@ -1,24 +1,56 @@
-import "./SCSS/style.scss";
 //fetch data from json file
 
-fetch("./data.json")
+fetch("./dist/data.json")
   .then((res: Response) => res.json())
   .then((res) => {
     searchFilterEngine(res.data);
-    setTimeout(() => {
-      document
-        .querySelectorAll(".preloader span")
-        .forEach((circle) => circle.classList.remove("active"));
-    }, 2000);
+    getImg();
   })
-  .catch(() => new Error());
-//search filter engine
+  .catch(() => {
+    console.log(new Error());
+  });
+//array of phone img path
+const arrImg: string[] = [
+  "/Iphone11-Pro.png",
+  "/Samsung-galaxy-s20-ultra.jpg",
+  "/Huawei-p40-pro.jpg",
+  "/Xperia-1.png",
+  "/xiaomi-mi-10-pro.png",
+  "/asus-zenfone-5-.webp",
+  "/oppo-find-x.jpg",
+];
+// function which put img in order items
+async function getImg() {
+  arrImg.forEach((url: string, index: number) => {
+    setTimeout(() => {
+      fetch("./dist/img" + url)
+        .then((res: Response) => res.blob())
+        .then((myBlob: Blob) => URL.createObjectURL(myBlob))
+        .then((URL) => {
+          const img: HTMLImageElement = document.createElement("img");
+          const preloader: NodeListOf<HTMLElement> = document.querySelectorAll(
+            ".preloader"
+          );
+          const children: HTMLSpanElement[] = Array.from(
+            preloader[index].querySelectorAll("span")
+          );
 
+          img.src = URL;
+          preloader[index].appendChild(img);
+          children.forEach((child: HTMLSpanElement) => child.remove());
+        })
+        .catch(() => {
+          console.log(new Error("oops"));
+        });
+    }, 200 * index);
+  });
+}
+//search filter engine
 function searchFilterEngine(res) {
   let data = res;
   const search: HTMLElement = document.getElementById("search");
   const list: HTMLElement = document.querySelector(".list");
-  const searchFilterBg: HTMLElement = document.querySelector(".search-filter");
+  const searchFilterBg: HTMLElement = document.querySelector(".nav-conteiner");
   const chooseLis: NodeListOf<HTMLElement> = document.querySelectorAll(
     ".choose"
   );
@@ -47,11 +79,8 @@ function searchFilterEngine(res) {
       (type: PropertyDecorator) =>
         type[currentFilter].toUpperCase().indexOf(value) === -1
     );
-    showItemIfMatch(itemsList);
-    showItemIfMatch(orderItemsList);
-
-    hideItemIfNoMatch(mistakenData, itemsList);
-    hideItemIfNoMatch(mistakenData, orderItemsList);
+    showItemIfMatch([itemsList, orderItemsList]);
+    hideItemIfNoMatch(mistakenData, [itemsList, orderItemsList]);
     showSearchItems();
   }
   // refresh data by typing
@@ -114,7 +143,7 @@ function searchFilterEngine(res) {
     orderConteiner.innerHTML = "";
     data.map((data) => {
       const li: HTMLElement = document.createElement("li");
-      li.className = "order-item red-theme";
+      li.className = "order-item red-theme show";
       li.setAttribute("data-id", data.id);
       li.setAttribute("data-theme", "red-theme");
       li.innerHTML = `
@@ -146,41 +175,36 @@ function searchFilterEngine(res) {
       animateList();
     }
   };
-  //animate if match
-  function showItemIfMatch(elements: NodeListOf<HTMLElement>) {
+  //show correct matches
+  function showItemIfMatch(arrayElements: NodeListOf<HTMLElement>[]) {
     if (data.length > 0) {
-      const arrayItem: HTMLElement[] = [...elements];
-      const showElements: string[] = data.map((data) => data.id);
+      const idItemsToShow: string[] = filteredData.map((data) => data.id);
+      arrayElements.forEach((array: NodeListOf<HTMLElement>) => {
+        const arrayItem: HTMLElement[] = Array.from(array);
 
-      showElements.forEach((el: string) => {
-        const arrayItemsToShow = arrayItem.filter(
-          (item: HTMLElement) => item.getAttribute("data-id") == el
-        );
-
-        arrayItemsToShow.forEach((el: HTMLElement) => {
-          el.classList.remove("hide");
-          el.classList.add("show");
+        arrayItem.forEach((item: HTMLElement) => {
+          idItemsToShow.forEach((id: string) => {
+            if (item.dataset.id === id) item.classList.replace("hide", "show");
+          });
         });
       });
     }
   }
+
   // hide wrong matches
   function hideItemIfNoMatch(
     mistakenData: any,
-    elements: NodeListOf<HTMLElement>
+    arrayElements: NodeListOf<HTMLElement>[]
   ) {
-    if (mistakenData.length > 0) {
-      const arrayItem: HTMLElement[] = [...elements];
-      const hideElements: string[] = mistakenData.map((data) => data.id);
+    if (data.length > 0) {
+      const idItemsToShow: string[] = mistakenData.map((data) => data.id);
+      arrayElements.forEach((array: NodeListOf<HTMLElement>) => {
+        const arrayItem: HTMLElement[] = Array.from(array);
 
-      hideElements.forEach((el: string) => {
-        const arrayItemsToHide = arrayItem.filter(
-          (item) => item.getAttribute("data-id") == el
-        );
-
-        arrayItemsToHide.forEach((el: HTMLElement) => {
-          el.classList.remove("show");
-          el.classList.add("hide");
+        arrayItem.forEach((item: HTMLElement) => {
+          idItemsToShow.forEach((id: string) => {
+            if (item.dataset.id === id) item.classList.replace("show", "hide");
+          });
         });
       });
     }
@@ -192,16 +216,15 @@ function searchFilterEngine(res) {
     const orderItem: HTMLElement = document.querySelector(
       ".order-item[data-id]"
     );
-
+    data = data.filter((data) => data.id !== value);
     parent.classList.remove("show");
     parent.classList.add("hide-scale-down");
     orderItem.classList.add("hide-scale-down");
 
-    setTimeout(() => {
-      data = data.filter((data) => data.id !== value);
+    orderItem.addEventListener("transitionend", () => {
       parent.remove();
       orderItem.remove();
-    }, 200);
+    });
   }
   //animate when  when creating new items
   function animateList() {
@@ -307,6 +330,7 @@ function searchFilterEngine(res) {
       );
 
       createOrderItems();
+      getImg();
     });
   });
   //show sort menu
@@ -321,7 +345,7 @@ function searchFilterEngine(res) {
   });
 }
 //position fixed when below visible space
-const searchFilter: HTMLElement = document.querySelector(".search-filter");
+const searchFilter: HTMLElement = document.querySelector(".nav-conteiner");
 
 document.addEventListener("scroll", () => {
   const scrollValue: number = window.scrollY;

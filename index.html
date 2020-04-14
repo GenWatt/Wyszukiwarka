@@ -8,53 +8,55 @@
 </head>
 
 <body class="red-theme">
-  <nav class="search-filter red-theme" data-theme="red-theme">
-    <div class="search-conteiner">
-      <div class="search-input">
-        <label for="search" class="search-label">Search</label>
-        <div class="icon red-theme" data-theme="red-theme">
-          <i class="fas fa-search"></i>
+  <nav class="search-filter">
+    <div class="nav-conteiner">
+      <div class="search-conteiner">
+        <div class="search-input">
+          <label for="search" class="search-label">Search</label>
+          <div class="icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <input type="text" name="search" id="search" autocomplete="off" />
         </div>
-        <input type="text" name="search" id="search" autocomplete="off" />
-      </div>
-      <div class="items-list-box">
-        <div id="path">
-          <span id="scroll"></span>
+        <div class="items-list-box">
+          <div id="path">
+            <span id="scroll"></span>
+          </div>
+          <ul class="list"></ul>
         </div>
-        <ul class="list"></ul>
       </div>
-    </div>
-    <div class="filters-conteiner">
-      <div class="set-up">
-        <label for="brand">Filter by brand</label>
-        <input type="radio" class="filter" name="filter" id="brand" value="brand" checked />
+      <div class="filters-conteiner">
+        <div class="set-up">
+          <label for="brand">Filter by brand</label>
+          <input type="radio" class="filter" name="filter" id="brand" value="brand" checked />
+        </div>
+        <div class="set-up">
+          <label for="phone">Filter by phone</label>
+          <input type="radio" class="filter" name="filter" id="phone" value="phone" />
+        </div>
       </div>
-      <div class="set-up">
-        <label for="phone">Filter by phone</label>
-        <input type="radio" class="filter" name="filter" id="phone" value="phone" />
+      <div class="drop-down-menu">
+        <p>Change Theme</p>
+        <i class="fas fa-arrow-down"></i>
+        <ul class="change-theme">
+          <li class="choose" data-theme="light-green-theme-bg">
+            Lightgreen Theme
+            <span class="color lightgreen"></span>
+          </li>
+          <li class="choose" data-theme="red-theme">
+            Red Theme
+            <span class="color red"></span>
+          </li>
+          <li class="choose" data-theme="black-theme">
+            Black Theme
+            <span class="color black"></span>
+          </li>
+        </ul>
       </div>
+      <button class="mobile-dropdown-nav red-theme" data-theme="red-theme">
+        <i class="fas fa-arrow-down"></i>
+      </button>
     </div>
-    <div class="drop-down-menu">
-      <p>Change Theme</p>
-      <i class="fas fa-arrow-down"></i>
-      <ul class="change-theme">
-        <li class="choose" data-theme="light-green-theme-bg">
-          Lightgreen Theme
-          <span class="color lightgreen"></span>
-        </li>
-        <li class="choose" data-theme="red-theme">
-          Red Theme
-          <span class="color red"></span>
-        </li>
-        <li class="choose" data-theme="black-theme">
-          Black Theme
-          <span class="color black"></span>
-        </li>
-      </ul>
-    </div>
-    <button class="mobile-dropdown-nav red-theme" data-theme="red-theme">
-      <i class="fas fa-arrow-down"></i>
-    </button>
   </nav>
   <main>
     <section class="order-items-section">

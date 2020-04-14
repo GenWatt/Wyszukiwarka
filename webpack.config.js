@@ -1,28 +1,22 @@
-var HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const path = require("path");
-const autoprefixer = require("autoprefixer");
 
 module.exports = {
-  entry: "./script.js",
+  entry: {
+    app: ["./script.js", "./SCSS/style.scss"]
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: "https://GenWatt.github.io/Wyszukiwarka",
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.s[ac]ss$/i,
-        use: [
-          // Creates `style` nodes from JS strings
-          "style-loader",
-          // Translates CSS into CommonJS
-          "css-loader",
-
-          "postcss-loader",
-          // Compiles Sass to CSS
-          "sass-loader",
-        ],
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ["css-loader",  "sass-loader"],
+        }),
       },
       {
         test: /\.js$/,
@@ -36,8 +30,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./sb.html",
+      template: "./index.html"
     }),
-    autoprefixer,
+    new ExtractTextPlugin("style.css"),
   ],
 };
