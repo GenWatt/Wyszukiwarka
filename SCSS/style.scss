@@ -461,6 +461,7 @@ body {
       -o-border-radius: 5px;
       border: none;
       outline: none;
+      cursor: pointer;
       box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.116),
         -3px -3px 10px rgb(236, 208, 208);
       transition: background-color 0.4s ease-out, transform 0.2s ease-out,
@@ -747,7 +748,8 @@ body {
         -ms-transform: scaleY(1);
         -o-transform: scaleY(1);
       }
-// circle with color
+
+      // circle with color
       .choose {
         display: flex;
         justify-content: space-between;

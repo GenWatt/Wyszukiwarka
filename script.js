@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-fetch("./data.json")
+fetch("./dist/data.json")
     .then(function (res) { return res.json(); })
     .then(function (res) {
     searchFilterEngine(res.data);
@@ -59,7 +59,7 @@ function getImg() {
         return __generator(this, function (_a) {
             arrImg.forEach(function (url, index) {
                 setTimeout(function () {
-                    fetch("./img" + url)
+                    fetch("./dist/img" + url)
                         .then(function (res) { return res.blob(); })
                         .then(function (myBlob) { return URL.createObjectURL(myBlob); })
                         .then(function (URL) {
@@ -91,7 +91,6 @@ function searchFilterEngine(res) {
     var orderItemsList;
     var value = "";
     var currentFilter = "brand";
-    var isClicked = false;
     var lastConection = data.length;
     function searchForData(e) {
         if (e)
@@ -107,31 +106,27 @@ function searchFilterEngine(res) {
         });
         showItemIfMatch([itemsList, orderItemsList]);
         hideItemIfNoMatch(mistakenData, [itemsList, orderItemsList]);
-        showSearchItems();
+        infoIfNoResult();
     }
     // refresh data by typing
     search.addEventListener("keyup", searchForData);
     // show list by click into input
     function showList() {
         if (value === "") {
-            var icon = this.previousElementSibling;
+            var icon = document.querySelector(".icon");
             var label = icon.previousElementSibling;
-            var itemsListBox = this.parentElement.nextElementSibling;
-            isClicked = !isClicked;
+            var itemsListBox = document.querySelector(".items-list-box");
             itemsListBox.classList.toggle("show");
-            this.classList.toggle("on-focus");
+            search.classList.toggle("on-focus");
             label.classList.toggle("on-focus");
             icon.classList.toggle("on-focus");
         }
-        if (!isClicked) {
-            search.blur();
-            itemsList.forEach(function (item) {
-                item.classList.remove("show");
-            });
-        }
-        else
-            animateList();
+        itemsList.forEach(function (item) {
+            item.classList.remove("show");
+        });
+        animateList();
     }
+    search.addEventListener("click", showList);
     search.addEventListener("click", showList);
     //create items
     function createListItems() {
@@ -160,7 +155,6 @@ function searchFilterEngine(res) {
             var li = document.createElement("li");
             li.className = "order-item red-theme show";
             li.setAttribute("data-id", data.id);
-            li.setAttribute("data-theme", "red-theme");
             li.innerHTML = "\n                <h4>" + data.phone + "</h4>\n                <div class=\"preloader\">\n                  <span class=\"active\"></span>\n                  <span class=\"active\"></span>\n                  <span class=\"active\"></span>\n                </div>\n                <p>" + data.description + "</p>\n                <span class=\"brand-order\">" + data.brand + "</span>\n                <button class=\"add-to-cart\">Add To Cart</button>\n                <span class=\"price\">" + data.price + "</span>\n            ";
             orderConteiner.appendChild(li);
         });
@@ -169,7 +163,7 @@ function searchFilterEngine(res) {
     }
     createOrderItems();
     // if no macth display info
-    var showSearchItems = function () {
+    var infoIfNoResult = function () {
         if (filteredData.length === 0)
             list.innerHTML = "<p class=\"no-result\">No Match</p>";
         else if (lastConection === 0 && filteredData !== 0) {
@@ -179,6 +173,7 @@ function searchFilterEngine(res) {
     };
     //show correct matches
     function showItemIfMatch(arrayElements) {
+        console.log(filteredData);
         if (data.length > 0) {
             var idItemsToShow_1 = filteredData.map(function (data) { return data.id; });
             arrayElements.forEach(function (array) {
@@ -211,8 +206,9 @@ function searchFilterEngine(res) {
     function deleteItem() {
         var value = this.value;
         var parent = this.parentElement;
-        var orderItem = document.querySelector(".order-item[data-id]");
+        var orderItem = document.querySelector(".order-item[data-id=\"" + value + "\"]");
         data = data.filter(function (data) { return data.id !== value; });
+        filteredData = filteredData.filter(function (data) { return data.id !== value; });
         parent.classList.remove("show");
         parent.classList.add("hide-scale-down");
         orderItem.classList.add("hide-scale-down");
@@ -220,6 +216,7 @@ function searchFilterEngine(res) {
             parent.remove();
             orderItem.remove();
         });
+        infoIfNoResult();
     }
     //animate when  when creating new items
     function animateList() {

@@ -1,6 +1,6 @@
 //fetch data from json file
 
-fetch("./data.json")
+fetch("./dist/data.json")
   .then((res: Response) => res.json())
   .then((res) => {
     searchFilterEngine(res.data);
@@ -23,7 +23,7 @@ const arrImg: string[] = [
 async function getImg() {
   arrImg.forEach((url: string, index: number) => {
     setTimeout(() => {
-      fetch("./img" + url)
+      fetch("./dist/img" + url)
         .then((res: Response) => res.blob())
         .then((myBlob: Blob) => URL.createObjectURL(myBlob))
         .then((URL) => {
@@ -62,7 +62,6 @@ function searchFilterEngine(res) {
   let orderItemsList: NodeListOf<HTMLElement>;
   let value: string = "";
   let currentFilter: string = "brand";
-  let isClicked: boolean = false;
   let lastConection: number = data.length;
 
   function searchForData(e) {
@@ -81,32 +80,32 @@ function searchFilterEngine(res) {
     );
     showItemIfMatch([itemsList, orderItemsList]);
     hideItemIfNoMatch(mistakenData, [itemsList, orderItemsList]);
-    showSearchItems();
+    infoIfNoResult();
   }
   // refresh data by typing
   search.addEventListener("keyup", searchForData);
   // show list by click into input
+
   function showList() {
     if (value === "") {
-      const icon: HTMLElement = this.previousElementSibling;
+      const icon: HTMLElement = document.querySelector(".icon");
       const label: Element = icon.previousElementSibling;
-      const itemsListBox: HTMLElement = this.parentElement.nextElementSibling;
+      const itemsListBox: HTMLElement = document.querySelector(
+        ".items-list-box"
+      );
 
-      isClicked = !isClicked;
       itemsListBox.classList.toggle("show");
-      this.classList.toggle("on-focus");
+      search.classList.toggle("on-focus");
       label.classList.toggle("on-focus");
       icon.classList.toggle("on-focus");
     }
-
-    if (!isClicked) {
-      search.blur();
-      itemsList.forEach((item: HTMLElement) => {
-        item.classList.remove("show");
-      });
-    } else animateList();
+    itemsList.forEach((item: HTMLElement) => {
+      item.classList.remove("show");
+    });
+    animateList();
   }
 
+  search.addEventListener("click", showList);
   search.addEventListener("click", showList);
 
   //create items
@@ -127,6 +126,7 @@ function searchFilterEngine(res) {
       //append items to ul
       list.appendChild(li);
     });
+
     itemsList = document.querySelectorAll(".item");
     document
       .querySelectorAll(".delete-btn")
@@ -145,7 +145,6 @@ function searchFilterEngine(res) {
       const li: HTMLElement = document.createElement("li");
       li.className = "order-item red-theme show";
       li.setAttribute("data-id", data.id);
-      li.setAttribute("data-theme", "red-theme");
       li.innerHTML = `
                 <h4>${data.phone}</h4>
                 <div class="preloader">
@@ -167,7 +166,7 @@ function searchFilterEngine(res) {
 
   createOrderItems();
   // if no macth display info
-  const showSearchItems = () => {
+  const infoIfNoResult = () => {
     if (filteredData.length === 0)
       list.innerHTML = `<p class="no-result">No Match</p>`;
     else if (lastConection === 0 && filteredData !== 0) {
@@ -177,6 +176,7 @@ function searchFilterEngine(res) {
   };
   //show correct matches
   function showItemIfMatch(arrayElements: NodeListOf<HTMLElement>[]) {
+    console.log(filteredData);
     if (data.length > 0) {
       const idItemsToShow: string[] = filteredData.map((data) => data.id);
       arrayElements.forEach((array: NodeListOf<HTMLElement>) => {
@@ -190,7 +190,6 @@ function searchFilterEngine(res) {
       });
     }
   }
-
   // hide wrong matches
   function hideItemIfNoMatch(
     mistakenData: any,
@@ -214,9 +213,11 @@ function searchFilterEngine(res) {
     const value: string = this.value;
     const parent: HTMLElement = this.parentElement;
     const orderItem: HTMLElement = document.querySelector(
-      ".order-item[data-id]"
+      `.order-item[data-id="${value}"]`
     );
+
     data = data.filter((data) => data.id !== value);
+    filteredData = filteredData.filter((data) => data.id !== value);
     parent.classList.remove("show");
     parent.classList.add("hide-scale-down");
     orderItem.classList.add("hide-scale-down");
@@ -225,6 +226,7 @@ function searchFilterEngine(res) {
       parent.remove();
       orderItem.remove();
     });
+    infoIfNoResult();
   }
   //animate when  when creating new items
   function animateList() {
