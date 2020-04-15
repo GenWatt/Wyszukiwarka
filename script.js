@@ -319,3 +319,18 @@ document.addEventListener("scroll", function () {
     else
         searchFilter.classList.remove("fixed-nav");
 });
+function duplicateEncode(word) {
+    var capLetters = word.toUpperCase();
+    var wordsArr = capLetters.split("");
+    var string = "";
+    for (var i = 0; i < wordsArr.length; i++) {
+        if (i !== wordsArr.indexOf(wordsArr[i])) {
+            console.log(wordsArr[i]);
+            string += "(";
+        }
+        else
+            string += ")";
+    }
+    return string;
+}
+console.log(duplicateEncode("Heeejjj"));

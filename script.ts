@@ -1,6 +1,6 @@
 //fetch data from json file
 
-fetch("./dist/data.json")
+fetch("./data.json")
   .then((res: Response) => res.json())
   .then((res) => {
     searchFilterEngine(res.data);
@@ -23,7 +23,7 @@ const arrImg: string[] = [
 async function getImg() {
   arrImg.forEach((url: string, index: number) => {
     setTimeout(() => {
-      fetch("./dist/img" + url)
+      fetch("./img" + url)
         .then((res: Response) => res.blob())
         .then((myBlob: Blob) => URL.createObjectURL(myBlob))
         .then((URL) => {
@@ -356,3 +356,4 @@ document.addEventListener("scroll", () => {
   if (scrollValue >= offsetTop) searchFilter.classList.add("fixed-nav");
   else searchFilter.classList.remove("fixed-nav");
 });
+
