@@ -1,4 +1,3 @@
-//fetch data from json file
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,7 +34,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-fetch("./dist/data.json")
+//fetch data from json file
+fetch("./data.json")
     .then(function (res) { return res.json(); })
     .then(function (res) {
     searchFilterEngine(res.data);
@@ -59,7 +59,7 @@ function getImg() {
         return __generator(this, function (_a) {
             arrImg.forEach(function (url, index) {
                 setTimeout(function () {
-                    fetch("./dist/img" + url)
+                    fetch("./img" + url)
                         .then(function (res) { return res.blob(); })
                         .then(function (myBlob) { return URL.createObjectURL(myBlob); })
                         .then(function (URL) {
@@ -319,18 +319,3 @@ document.addEventListener("scroll", function () {
     else
         searchFilter.classList.remove("fixed-nav");
 });
-function duplicateEncode(word) {
-    var capLetters = word.toUpperCase();
-    var wordsArr = capLetters.split("");
-    var string = "";
-    for (var i = 0; i < wordsArr.length; i++) {
-        if (i !== wordsArr.indexOf(wordsArr[i])) {
-            console.log(wordsArr[i]);
-            string += "(";
-        }
-        else
-            string += ")";
-    }
-    return string;
-}
-console.log(duplicateEncode("Heeejjj"));
