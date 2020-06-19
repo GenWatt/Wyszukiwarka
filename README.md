@@ -6,7 +6,8 @@
 <li>Responsywna strona</li>
 <li>Zmiana motywu strony oraz zapisywanie go do local storage</li>
 </ul>
-## instalacja</br>
+# instalacja
+
 <ul>
   <li>npm install</li>
 </ul>
