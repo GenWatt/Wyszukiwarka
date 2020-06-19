@@ -6,8 +6,8 @@
 <li>Responsywna strona</li>
 <li>Zmiana motywu strony oraz zapisywanie go do local storage</li>
 </ul>
-# Instalacja:
+# Instalacja</br>
 -npm install
 
-# start aplikacji:
+# start aplikacji</br>
 -npm run dev
